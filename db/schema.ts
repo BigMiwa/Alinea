@@ -1,6 +1,6 @@
-import { index, integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import { boolean, index, pgTable, text } from "drizzle-orm/pg-core";
 
-export const tasks = sqliteTable("tasks", {
+export const tasks = pgTable("tasks", {
   id: text("id").primaryKey(),
   userId: text("user_id").notNull(),
   title: text("title").notNull(),
@@ -8,7 +8,7 @@ export const tasks = sqliteTable("tasks", {
   category: text("category").notNull().default("Personal"),
   priority: text("priority").notNull().default("none"),
   dueDate: text("due_date").notNull().default(""),
-  completed: integer("completed", { mode: "boolean" }).notNull().default(false),
+  completed: boolean("completed").notNull().default(false),
   createdAt: text("created_at").notNull(),
   updatedAt: text("updated_at").notNull(),
   completedAt: text("completed_at"),
